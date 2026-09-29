@@ -8,7 +8,7 @@
  */
 import * as store from '../lib/storage.js';
 import { verifyLicenseKey, entitlements } from '../lib/license.js';
-import { LICENSE_PUBLIC_JWK } from '../lib/public-key.js';
+import { LICENSE_PUBLIC_JWK } from '../config.js';
 
 const STUDIO_URL = 'studio/studio.html';
 

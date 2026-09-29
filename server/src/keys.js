@@ -1,6 +1,6 @@
 /**
  * Key material helpers. The private key never leaves the server; the public
- * JWK is copied into src/lib/public-key.js so the extension can verify offline.
+ * JWK is copied into the extension's config.js so it can verify offline.
  */
 import { webcrypto } from 'node:crypto';
 import { readFileSync } from 'node:fs';

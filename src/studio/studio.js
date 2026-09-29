@@ -12,8 +12,7 @@ import { renderMarkdown } from '../lib/markdown.js';
 import { buildPdf } from '../lib/pdf-jspdf.js';
 import { entitlements, gatePacket, FREE_WATERMARK } from '../lib/license.js';
 import { includedMessages, blocksToText } from '../lib/model.js';
-
-const CHECKOUT_BASE = 'http://localhost:8787';
+import { CHECKOUT_BASE } from '../config.js';
 
 const $ = (sel) => document.querySelector(sel);
 const send = (msg) => new Promise((resolve) => chrome.runtime.sendMessage(msg, resolve));

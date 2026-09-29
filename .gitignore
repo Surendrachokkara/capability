@@ -8,3 +8,4 @@ packet-preview.html
 *.log
 .DS_Store
 demo/
+dist/

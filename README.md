@@ -65,16 +65,18 @@ npm run keygen               # prints the signing keypair
 ```
 
 Put the printed `LICENSE_PRIVATE_JWK` in `server/.env`, paste the printed public
-JWK into `src/lib/public-key.js`, then:
+JWK into `src/config.js`, then:
 
 ```bash
 npm start                    # http://localhost:8787
 stripe listen --forward-to localhost:8787/api/stripe/webhook
 ```
 
-`src/lib/public-key.js` ships as `null`, so an unconfigured build fails closed on
-the free tier rather than giving the product away. For local testing you can skip
-editing it: **Studio → Licence → Developer** accepts a public JWK directly.
+`src/config.js` is the only file you edit to deploy: it holds `CHECKOUT_BASE`
+(your server's URL) and `LICENSE_PUBLIC_JWK`. The key ships as `null`, so an
+unconfigured build fails closed on the free tier rather than giving the product
+away. For local testing you can skip editing it: **Studio → Licence → Developer**
+accepts a public JWK directly.
 
 Endpoints: `POST /api/checkout`, `POST /api/stripe/webhook`,
 `GET /success?session_id=…` (shows the buyer their key — no email infrastructure
@@ -87,6 +89,7 @@ npm test               # 76 tests: extraction, adapters, renderers, gating, e2e
 npm run preview:pdf    # renders a sample packet's PDF layout to an HTML page
 npm run preview:studio # loads the Studio in Chromium and screenshots it
 npm run icons          # regenerates the icon set
+npm run package        # builds dist/ zips for the Web Store and the server
 ```
 
 `npm run preview:pdf` draws the real PDF op-stream as SVG, which makes layout
@@ -97,6 +100,7 @@ regressions visible without a PDF rasterizer.
 ```
 src/                    the extension (load this folder unpacked)
   manifest.json
+  config.js             CHECKOUT_BASE + LICENSE_PUBLIC_JWK — the deploy-time edit
   content/              boot bridge + per-vendor adapters
   background/           thread library, settings, licence state
   popup/                capture and library
