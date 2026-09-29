@@ -45,6 +45,7 @@
     {
       "resources": [
         "content/capture.js",
+        "content/adapters/*.js",
         "lib/*.js"
       ],
       "matches": [

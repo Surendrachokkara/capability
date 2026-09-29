@@ -115,7 +115,7 @@ function readTitle(doc) {
 }
 
 function cleanDocTitle(title) {
-  return (title || 'ChatGPT conversation').replace(/\s*[|\-–]\s*ChatGPT\s*$/i, '').trim()
+  return (title || 'ChatGPT conversation').replace(/\s*[|\-–—·]\s*ChatGPT\s*$/i, '').trim()
     || 'ChatGPT conversation';
 }
 

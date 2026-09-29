@@ -90,7 +90,13 @@ npm run preview:pdf    # renders a sample packet's PDF layout to an HTML page
 npm run preview:studio # loads the Studio in Chromium and screenshots it
 npm run icons          # regenerates the icon set
 npm run package        # builds dist/ zips for the Web Store and the server
+npm run smoke:browser  # installs the built zip in Chromium and captures a thread
 ```
+
+`npm run smoke:browser` is the one that catches packaging bugs: it loads the
+real artifact, registers the service worker and runs the content script's
+dynamic import chain, which unit tests cannot reach. On a headless machine run
+it as `xvfb-run -a node tools/browser-smoke.mjs`.
 
 `npm run preview:pdf` draws the real PDF op-stream as SVG, which makes layout
 regressions visible without a PDF rasterizer.

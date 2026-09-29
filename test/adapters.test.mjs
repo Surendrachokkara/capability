@@ -76,6 +76,20 @@ test('titles fall back to the document title when the chrome is missing', () => 
   assert.equal(thread.title, 'Some chat');
 });
 
+test('every separator the vendors use is stripped from the fallback title', () => {
+  // Real tabs have used hyphen, en dash, em dash and middot at different times;
+  // a leftover " — ChatGPT" would show up as a heading in the client's packet.
+  for (const sep of ['-', '\u2013', '\u2014', '|', '\u00b7']) {
+    const gpt = capture(`<title>Retainer pricing ${sep} ChatGPT</title>`
+      + '<div data-message-author-role="user"><p>hi</p></div>', 'https://chatgpt.com/c/x');
+    assert.equal(gpt.title, 'Retainer pricing', `ChatGPT separator ${sep}`);
+
+    const cl = capture(`<title>Landing copy ${sep} Claude</title>`
+      + '<div data-testid="user-message"><p>hi</p></div>', 'https://claude.ai/chat/x');
+    assert.equal(cl.title, 'Landing copy', `Claude separator ${sep}`);
+  }
+});
+
 test('every message carries an id and is included by default', () => {
   for (const [html, url] of [[CHATGPT_HTML, 'https://chatgpt.com/c/a'], [CLAUDE_HTML, 'https://claude.ai/chat/b']]) {
     for (const msg of capture(html, url).messages) {

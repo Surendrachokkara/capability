@@ -63,7 +63,7 @@ function readTitle(doc) {
   const fromTrigger = trigger && textOf(trigger).trim();
   if (fromTrigger) return fromTrigger;
   return (doc.title || 'Claude conversation')
-    .replace(/\s*[|\-–]\s*Claude\s*$/i, '').trim() || 'Claude conversation';
+    .replace(/\s*[|\-–—·]\s*Claude\s*$/i, '').trim() || 'Claude conversation';
 }
 
 function conversationId(loc) {
