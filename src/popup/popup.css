@@ -1,0 +1,17 @@
+body { width: 330px; padding: 14px; }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+section { margin: 16px 0; }
+.block { width: 100%; }
+.row-between { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.notice { margin-bottom: 12px; }
+
+.threads { list-style: none; margin: 0; padding: 0; max-height: 210px; overflow-y: auto; }
+.threads li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 6px;
+}
+.threads .title {
+  flex: 1; min-width: 0; font-size: 13px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.threads .meta { font-size: 11px; color: var(--muted); }

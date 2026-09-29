@@ -1,0 +1,9 @@
+node_modules/
+server/node_modules/
+server/data/
+server/.env
+server/.env.local
+screenshots/
+packet-preview.html
+*.log
+.DS_Store

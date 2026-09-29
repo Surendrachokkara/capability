@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PacketPress Studio</title>
+  <link rel="stylesheet" href="../lib/ui.css">
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <strong>PacketPress</strong>
+    <span class="muted small">Studio</span>
+  </div>
+  <div class="topbar-actions">
+    <span id="plan" class="badge">Free</span>
+    <button id="licenceBtn" class="ghost small">Licence</button>
+    <button id="exportMd">Markdown</button>
+    <button id="exportPdf" class="primary">Export PDF</button>
+  </div>
+</header>
+
+<div id="banner" class="notice" hidden></div>
+
+<main class="layout">
+  <!-- Threads -->
+  <aside class="col threads-col">
+    <div class="col-head">
+      <h2>Threads</h2>
+      <span id="threadCount" class="muted small"></span>
+    </div>
+    <div id="threadList"></div>
+    <p id="noThreads" class="small muted pad">
+      No threads yet. Open a ChatGPT or Claude conversation and use the
+      PacketPress toolbar button to capture it.
+    </p>
+  </aside>
+
+  <!-- Packet settings -->
+  <section class="col form-col">
+    <div class="col-head"><h2>Packet</h2></div>
+    <div class="pad">
+      <label class="field"><span>Packet title</span><input id="title" type="text" placeholder="Discovery packet"></label>
+      <label class="field"><span>Client name</span><input id="clientName" type="text" placeholder="Northwind Studio"></label>
+      <label class="field"><span>Prepared by</span><input id="preparedBy" type="text" placeholder="Jane Doe, Doe Consulting"></label>
+      <label class="field"><span>Date</span><input id="dateLabel" type="text"></label>
+      <label class="field"><span>Summary (optional)</span><textarea id="summary" rows="3" placeholder="One paragraph the client reads first."></textarea></label>
+
+      <fieldset class="branding">
+        <legend>Branding <span id="brandingLock" class="badge" hidden>Pro</span></legend>
+        <label class="field"><span>Logo</span>
+          <div class="logo-row">
+            <input id="logo" type="file" accept="image/png,image/jpeg,image/webp">
+            <button id="logoClear" class="ghost small" hidden>Remove</button>
+          </div>
+          <img id="logoPreview" alt="" hidden>
+        </label>
+        <label class="field"><span>Footer line</span><input id="footer" type="text" placeholder="Confidential — prepared for …"></label>
+        <label class="field"><span>Watermark</span><input id="watermark" type="text" placeholder="e.g. DRAFT (leave blank for none)"></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Structure</legend>
+        <label class="check"><input id="includeCover" type="checkbox"> Cover page</label>
+        <label class="check"><input id="includeToc" type="checkbox"> Table of contents</label>
+        <div class="two-up">
+          <label class="field"><span>Label for your prompts</span><input id="userLabel" type="text"></label>
+          <label class="field"><span>Label for answers</span><input id="assistantLabel" type="text"></label>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+
+  <!-- Preview -->
+  <section class="col preview-col">
+    <div class="col-head">
+      <h2>Preview</h2>
+      <span id="previewMeta" class="muted small"></span>
+    </div>
+    <iframe id="preview" title="Packet preview" sandbox=""></iframe>
+  </section>
+</main>
+
+<!-- Licence dialog -->
+<dialog id="licenceDialog">
+  <form method="dialog" class="dialog-body">
+    <h2>Licence</h2>
+    <p id="licenceState" class="small muted"></p>
+
+    <label class="field"><span>Licence key</span>
+      <textarea id="licenceKey" rows="3" placeholder="PP1-…"></textarea>
+    </label>
+    <details>
+      <summary class="small muted">Developer: use a custom public key</summary>
+      <label class="field"><span>Public JWK (JSON)</span><textarea id="publicJwk" rows="3" placeholder='{"kty":"EC",…}'></textarea></label>
+    </details>
+    <p id="licenceError" class="notice error" hidden></p>
+
+    <div class="dialog-actions">
+      <button id="buyMonthly" type="button">Subscribe $12/mo</button>
+      <button id="buyPack" type="button">One-pack $29</button>
+      <span class="spacer"></span>
+      <button id="licenceRemove" type="button" class="ghost danger" hidden>Remove</button>
+      <button value="cancel" class="ghost">Close</button>
+      <button id="licenceActivate" type="button" class="primary">Activate</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="studio.js"></script>
+</body>
+</html>

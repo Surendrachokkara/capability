@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PacketPress</title>
+  <link rel="stylesheet" href="../lib/ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>PacketPress</h1>
+    <span id="plan" class="badge">Free</span>
+  </header>
+
+  <div id="status" class="notice" hidden></div>
+
+  <button id="capture" class="primary block">Capture this thread</button>
+  <p id="context" class="small muted" style="margin-top:8px"></p>
+
+  <section>
+    <div class="row-between">
+      <h2>Library <span id="count" class="muted">0</span></h2>
+      <button id="clear" class="ghost small danger" hidden>Clear</button>
+    </div>
+    <ul id="threads" class="threads"></ul>
+    <p id="empty" class="small muted">Open a ChatGPT or Claude conversation and capture it.</p>
+  </section>
+
+  <button id="studio" class="block">Open Studio →</button>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
